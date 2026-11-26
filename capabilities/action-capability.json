@@ -1,0 +1,32 @@
+{
+  "name": "Cube Action Extended",
+  "attributes": {
+    "action": {
+      "schema": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string",
+            "enum": [
+              "No Action",
+              "Shake",
+              "Slide",
+              "Double Tap",
+              "Flip 90 Degrees",
+              "Flip 180 Degrees",
+              "Rotate Clockwise",
+              "Rotate Counterclockwise",
+              "Scene Flip"
+            ]
+          }
+        },
+        "required": [
+          "value"
+        ],
+        "additionalProperties": false
+      },
+      "enumCommands": []
+    }
+  },
+  "commands": {}
+}
