@@ -1,4 +1,4 @@
-name: Aqara Cube T1 Pro – Automate Prime Edition
+name: Aqara Cube T1 Pro - Automate Prime Edition
 packageKey: aqara-cube-t1-pro-automate-prime
 description: Dedicated driver for the LUMI lumi.remote.cagl02
 permissions:
