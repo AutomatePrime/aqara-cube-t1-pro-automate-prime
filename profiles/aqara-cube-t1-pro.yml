@@ -1,0 +1,32 @@
+name: aqara-cube-t1-pro
+components:
+  - id: main
+    capabilities:
+      - id: concerttheme23846.cubeActionExtended
+        version: 1
+      - id: stse.cubeFace
+        version: 1
+      - id: battery
+        version: 1
+      - id: firmwareUpdate
+        version: 1
+      - id: refresh
+        version: 1
+    categories:
+      - name: RemoteController
+
+preferences:
+- name: modeRequest
+  title: Request Cube mode
+  description: Queue a one-time change. Tap LINK once or wait for the Cube to check
+    in.
+  required: true
+  preferenceType: enumeration
+  definition:
+    options:
+      keep: Keep current mode
+      action: Action Mode
+      scene: Scene Mode
+    default: keep
+
+
