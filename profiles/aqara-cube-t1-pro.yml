@@ -14,6 +14,46 @@ components:
         version: 1
     categories:
       - name: RemoteController
+  - id: shake
+    label: Shake
+    capabilities:
+      - id: button
+        version: 1
+  - id: slide
+    label: Slide
+    capabilities:
+      - id: button
+        version: 1
+  - id: doubleTap
+    label: Double Tap
+    capabilities:
+      - id: button
+        version: 1
+  - id: flip90
+    label: Flip 90 Degrees
+    capabilities:
+      - id: button
+        version: 1
+  - id: flip180
+    label: Flip 180 Degrees
+    capabilities:
+      - id: button
+        version: 1
+  - id: sceneFlip
+    label: Scene Flip
+    capabilities:
+      - id: button
+        version: 1
+  - id: clockwise
+    label: Rotate Clockwise
+    capabilities:
+      - id: button
+        version: 1
+  - id: counterclockwise
+    label: Rotate Counterclockwise
+    capabilities:
+      - id: button
+        version: 1
 
 preferences:
 - name: modeRequest
@@ -30,3 +70,7 @@ preferences:
     default: keep
 
 
+
+metadata:
+  mnmn: SmartThingsCommunity
+  vid: 166fcc7b-42d0-38fe-a424-e94fdd265ccc
