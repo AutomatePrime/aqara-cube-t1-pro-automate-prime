@@ -40,9 +40,26 @@ local function reset_thread(device)
   device:set_field(CUBEACTION_TIMER, device.thread:call_with_delay(CUBEACTION_TIME, callback_timer(device)))
 end
 
-local labels = {main="Shake", slide="Slide", doubleTap="Double Tap", flip90="Flip 90 Degrees", flip180="Flip 180 Degrees", sceneFlip="Scene Flip", clockwise="Rotate Clockwise", counterclockwise="Rotate Counterclockwise"}
+local gestures = {
+  main = { component = "shake", label = "Shake" },
+  slide = { component = "slide", label = "Slide" },
+  doubleTap = { component = "doubleTap", label = "Double Tap" },
+  flip90 = { component = "flip90", label = "Flip 90 Degrees" },
+  flip180 = { component = "flip180", label = "Flip 180 Degrees" },
+  sceneFlip = { component = "sceneFlip", label = "Scene Flip" },
+  clockwise = { component = "clockwise", label = "Rotate Clockwise" },
+  counterclockwise = { component = "counterclockwise", label = "Rotate Counterclockwise" },
+}
+
 local function action(device, id)
-  if labels[id] then device:emit_event(cubeAction.action({value=labels[id]}, {state_change=true})) end
+  local gesture = gestures[id]
+  if gesture == nil then return end
+
+  device:emit_event(cubeAction.action({value=gesture.label}, {state_change=true}))
+  local component = device.profile.components[gesture.component]
+  if component then
+    device:emit_component_event(component, capabilities.button.button.pushed({state_change=true}))
+  end
 end
 local log = require "log"
 local function request_mode(device)
@@ -85,6 +102,13 @@ local function do_refresh(driver, device)
 end
 
 local function device_init(driver, device)
+  for _, gesture in pairs(gestures) do
+    local component = device.profile.components[gesture.component]
+    if component then
+      device:emit_component_event(component, capabilities.button.supportedButtonValues({"pushed"}, {visibility={displayed=false}}))
+      device:emit_component_event(component, capabilities.button.numberOfButtons(1, {visibility={displayed=false}}))
+    end
+  end
   device:set_field("pending_mode", ({action=0,scene=1})[device.preferences.modeRequest])
   device:set_field("mode_attempts", 0)
   local power_configuration = {
